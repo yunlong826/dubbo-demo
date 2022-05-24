@@ -18,4 +18,5 @@ public class MyTest {
         Registry registry = (Registry) ac.getBean(Registry.class.getName());
         System.out.println(registry.getAddress());
     }
+
 }
