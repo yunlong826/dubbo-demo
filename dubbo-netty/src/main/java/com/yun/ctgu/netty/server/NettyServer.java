@@ -19,6 +19,7 @@ public class NettyServer {
 
     public void bind(int port) throws Exception {
 
+
         EventLoopGroup bossGroup = new NioEventLoopGroup(); //bossGroup就是parentGroup，是负责处理TCP/IP连接的
         EventLoopGroup workerGroup = new NioEventLoopGroup(); //workerGroup就是childGroup,是负责处理Channel(通道)的I/O事件
 
