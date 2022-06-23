@@ -26,6 +26,7 @@ public class Reference implements Serializable {
     public void setInterface_(String interface_) {
         this.interface_ = interface_;
     }
+    public Reference(){}
 
     public Reference(String id, String interface_) {
         this.id = id;

@@ -6,6 +6,7 @@
         http://yunDubbo.yun.com/schema/tag
         http://yunDubbo.yun.com/schema/tag/yun.xsd">
     <yun:registry address="127.0.0.1" />
+    <yun:reference id="1111"/>
 
 
 </beans>

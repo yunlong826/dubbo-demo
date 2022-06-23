@@ -25,6 +25,6 @@ public class ServiceBeanDefinitionParser implements BeanDefinitionParser {
         genericBeanDefinition.getPropertyValues().add("interface_",element.getAttribute("interface_"));
         genericBeanDefinition.getPropertyValues().add("ref",element.getAttribute("ref"));
         parserContext.getRegistry().registerBeanDefinition(beanClass.getName(),genericBeanDefinition);
-        return null;
+        return genericBeanDefinition;
     }
 }

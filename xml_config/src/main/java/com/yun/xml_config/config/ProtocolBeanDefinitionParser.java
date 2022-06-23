@@ -26,6 +26,6 @@ public class ProtocolBeanDefinitionParser implements BeanDefinitionParser {
         genericBeanDefinition.getPropertyValues().add("name",element.getAttribute("name"));
         genericBeanDefinition.getPropertyValues().add("port",element.getAttribute("port"));
         parserContext.getRegistry().registerBeanDefinition(beanClass.getName(),genericBeanDefinition);
-        return null;
+        return genericBeanDefinition;
     }
 }

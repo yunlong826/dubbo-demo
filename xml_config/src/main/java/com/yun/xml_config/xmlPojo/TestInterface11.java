@@ -1,13 +1,10 @@
 package com.yun.xml_config.xmlPojo;
 
-import java.io.Serializable;
-
 /**
  * @author jack_yun
  * @version 1.0
  * @description: TODO
- * @date 2022/5/23 19:52
+ * @date 2022/6/3 21:52
  */
-public interface Registry{
-
+public interface TestInterface11 {
 }

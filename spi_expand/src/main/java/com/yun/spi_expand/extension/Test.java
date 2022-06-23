@@ -1,8 +1,14 @@
 package com.yun.spi_expand.extension;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.MethodDescriptor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Enumeration;
 
@@ -13,28 +19,27 @@ import java.util.Enumeration;
  * @date 2022/5/25 15:47
  */
 public class Test {
+    public int process(){
+        return 1;
+    }
     public static void main(String[] args) throws IOException {
-        Class<TestInterface> testInterfaceClass = TestInterface.class;
-        SPI annotation = testInterfaceClass.getAnnotation(SPI.class);
-        System.out.println(testInterfaceClass.getName());
-//        ClassLoader classLoader = Test.class.getClassLoader();
-        Enumeration<URL> urls;
-        String fileName = "META-INF/yun/"+testInterfaceClass.getName();
-        urls = ClassLoader.getSystemResources(fileName);
-        while(urls.hasMoreElements()){
-            URL url = urls.nextElement();
-            System.out.println(url);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "utf-8"));
-            String line;
-            while((line = reader.readLine())!=null) {
-                System.out.println(line);
-                final int ci = line.indexOf('#');
+        try {
+            BeanInfo beanInfo = Introspector.getBeanInfo(Test.class);
+            MethodDescriptor[] methodDescriptors = beanInfo.getMethodDescriptors();
+            for(MethodDescriptor m:methodDescriptors){
+                System.out.println(m.getMethod().getName());
+                if(m.getMethod().getName().equals("process")){
+                    Test test = new Test();
+                    Object invoke = m.getMethod().invoke(test);
+                    System.out.println(invoke+"-------");
+                }
             }
+        } catch (IntrospectionException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
-        System.out.println(ClassLoader.getSystemClassLoader());
-        if(annotation == null)
-            System.out.println("没有加spi注解");
-        else
-            System.out.println("加了spi注解");
     }
 }
